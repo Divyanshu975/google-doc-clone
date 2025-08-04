@@ -6,7 +6,7 @@ const { Server } = require("socket.io");
 require("dotenv").config();
 
 const app = express();
-app.use(cors);
+app.use(cors());
 app.use(express.json());
 
 console.log("uri", process.env.MONGO_URI);
@@ -22,7 +22,7 @@ const io = new Server(server, {
   },
 });
 
-// Basic Socket.IO setup
+
 io.on("connection", (socket) => {
   console.log("🟢 New client connected:", socket.id);
 
@@ -40,7 +40,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// Start server
+
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
